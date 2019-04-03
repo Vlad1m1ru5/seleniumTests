@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -7,6 +6,17 @@ import java.util.List;
 
 public class Selenium {
 
+    // Поиск данных по таблицам
+    public static void parse() {
+
+    }
+
+    // Фиксация данных из таблиц
+    public static void commit() {
+
+    }
+
+    // Главный метод
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "D:\\ProgrammFiles\\Selenium-java-3.141.59\\chromedriver.exe");
 
@@ -19,17 +29,11 @@ public class Selenium {
 
         // Доступ к сайту
         ChromeDriver chrome_driver = new ChromeDriver();
-        chrome_driver.get("http://demo.guru99.com/");
-
-        // Данные таблиц
-        /*
-            rows = chrome_driver.findElements(By.xpath("//table//tr"));
-            cells = rows.get(1).findElements(By.tagName("td"));
-        */
+        //chrome_driver.get("http://demo.guru99.com/");
+        chrome_driver.get("http://moneta-russia.ru/soyuz/");
 
         // Получение данных таблиц
         tables = chrome_driver.findElements(By.xpath("//table"));
-        //tables = chrome_driver.findElements(By.tagName("table"));
 
         for (WebElement table : tables) {
             // Получение данны строк
@@ -41,21 +45,23 @@ public class Selenium {
 
                 // Вывод в консоль содержимого ячейки
                 for (WebElement cell : cells) {
-                    System.out.print(cell.getText());
+                    System.out.printf("%-7s", cell.getText());
 
-                    /*
-                    TODO
-                        Проверка на последнюю ячейку в строке
-                        Добавить пробел или нет?
-                     */
-                    //if (cell.equals(cells.get(cells.last))) { }
+                    // Выбор разделителя
+                    if (cell.equals(cells.get(cells.size() - 1))) {
+                        // Разделитель консольного вывода строк
+                        System.out.println("");
+                    } else {
+                        // Разделитель консольного вывода ячеек
+                        System.out.print(" ");
+                    }
                 }
-
-                System.out.println("");
             }
 
+            // Разделитель консольного вывода таблиц
             System.out.println("");
         }
 
+        chrome_driver.close();
     } // Конец main()
 }
