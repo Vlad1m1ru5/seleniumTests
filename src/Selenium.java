@@ -1,6 +1,7 @@
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellAddress;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -114,6 +115,7 @@ public class Selenium {
                  */
                 try {
                     crntTable.put(crntTableRows++, crntRow);
+                    crntRow = new ArrayList<String>();
                 } catch (Exception e) {
                     // ПУСТО
                 }
@@ -124,6 +126,7 @@ public class Selenium {
              */
             try {
                 allTables.put(counterTables++, crntTable);
+                crntTable = new HashMap<Integer, ArrayList>();
             } catch (Exception e) {
                 // ПУСТО
             }
